@@ -1,0 +1,29 @@
+﻿@model DataAccess.Entity.Note
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h5 class="card-title">@Html.DisplayFor(model => model.Title)</h5>
+
+<div>
+	<div class="card">
+		<div class="card-body">
+			<dl class="row">
+				<dd>
+					@Html.Raw(@Model.Text)
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<br />
+<br/>
+<div class="row">
+	<div class="col-md-6">
+		<a class="btn btn-success col-md-12" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+	</div><br/><br />
+	<div class="col-md-6">
+		<a class="btn btn-warning col-md-12" asp-action="Index" asp-controller="Notes">Back</a>
+	</div>
+</div>

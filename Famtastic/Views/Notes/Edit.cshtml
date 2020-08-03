@@ -1,0 +1,81 @@
+﻿@model DataAccess.Entity.Note
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit" , enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input asp-for="Title" class="form-control" placeholder="Note Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <textarea id="summernote" asp-for="Text" class="form-control" placeholder="Add note text..."></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <script>
+                $('#summernote').summernote({
+                    placeholder: '',
+                    tabsize: 2,
+                    height: 250,
+                    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['Arial Black', 'Comic Sans MS', 'Courier New']],
+                        ['fontsize', ['32', '24', '18', '14', '12', '10', '8']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['insert', ['link']],
+                        ['view', ['fullscreen']]
+                    ]
+                });
+            </script>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Save" class="btn btn-success col-md-12" />
+                    </div><br /><br />
+                    <div class="col-md-6">
+                        <a class="btn btn-warning col-md-12" asp-action="Index" asp-controller="Notes">Back</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <footer class="fixed-bottom bg-light">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="Advanced" class="control-label">Link to list</label>
+                    <input type="checkbox" asp-for="Advanced" id="chkShowNoteList" onclick="CheckChangedEvent('ShowHideNoteList', 'chkShowNoteList')" />
+                    <span asp-validation-for="Advanced" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="DueDate" class="control-label"></label>
+                    <input id="date" type="date" asp-for="DueDate" name="dueDate">
+                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                </div>
+                <select hidden="hidden" asp-for="UserProfileId" class="form-control" asp-items="ViewBag.UserProfileId"></select>
+                <div class="form-group col-md-4">
+                    <label asp-for="ShareToFam" class="control-label"></label>
+                    <input type="checkbox" asp-for="ShareToFam" />
+                    <span asp-validation-for="ShareToFam" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

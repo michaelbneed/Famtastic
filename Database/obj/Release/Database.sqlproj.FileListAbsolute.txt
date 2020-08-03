@@ -1,0 +1,9 @@
+C:\Users\user\Source\repos\FamtasticNew\Database\bin\Release\Database.dacpac
+C:\Users\user\Source\repos\FamtasticNew\Database\bin\Release\Database.dll
+C:\Users\user\Source\repos\FamtasticNew\Database\bin\Release\Database.pdb
+C:\Users\user\Source\repos\FamtasticNew\Database\obj\Release\Model.xml
+C:\Users\user\Source\repos\FamtasticNew\Database\obj\Release\refactor.xml
+C:\Users\user\Source\repos\FamtasticNew\Database\obj\Release\postdeploy.sql
+C:\Users\user\Source\repos\FamtasticNew\Database\obj\Release\predeploy.sql
+C:\Users\user\Source\repos\FamtasticNew\Database\obj\Release\Database.dll
+C:\Users\user\Source\repos\FamtasticNew\Database\obj\Release\Database.pdb

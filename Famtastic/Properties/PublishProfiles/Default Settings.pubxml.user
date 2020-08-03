@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGTyyaVE+o0io+Gjq+qzHmgAAAAACAAAAAAAQZgAAAAEAACAAAAAPkysOGvDgpBGU3Kn9RnOAoQwHwF8kio42t01jd8fd2gAAAAAOgAAAAAIAACAAAAA4kdljUGTOFR8Qw+Mxrv+wGDLu7uavNEiO4qkcA09W5CAAAABngc2z67rcv3xJkJ+oEW+TlHjwi2WEj2sRyn5m6frbDkAAAAAOzklmEYYDqs5eZfVBzh7ecrioc6g9GLAxTP7UqK4fpfZjLOblt8VlEpkN3i5YUO6ysuiiG2UIDrm1vrysS6bD</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=SQL5045.site4now.net%3bInitial Catalog=DB_A45EDD_FamData%3bUser Id=DB_A45EDD_FamData_admin%3bPassword=G0ingStr0ng2019</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="FamDbContextConnection">
+      <Value>Data Source=SQL5045.site4now.net%3bInitial Catalog=DB_A45EDD_FamData%3bUser Id=DB_A45EDD_FamData_admin%3bPassword=G0ingStr0ng2019</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

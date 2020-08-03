@@ -1,0 +1,49 @@
+﻿@using Biz
+@using DataAccess.Dto
+@using DataAccess.Entity
+@model DataAccess.Entity.Family
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<div>
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-6">
+					<p>@Model.FamilyLastName Family</p><br />
+					@Html.Raw(@Model.Description)
+				</div>
+				<div class="col-md-6">
+					<img class="rounded img-fluid" src="@Url.Action("RenderPhoto", "MediaHelper", new {imageType = Constants.RenderFamilyImage, id = UserData.FamilyId})" alt="fam" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+	<br />
+	<div class="row">
+		<div class="col-md-6">
+			<a class="btn btn-success col-md-12" asp-action="Edit" asp-route-id="@Model.Id">Manage</a>
+		</div><br /><br />
+		<div class="col-md-6">
+			<a class="btn btn-warning col-md-12" asp-action="Index" asp-controller="Home">Back</a>
+		</div>
+	</div>
+}
+<br />
+<div class="card-deck align-content-center bg-light" style="text-align: center">
+	<p class="form-control align-content-center bg-light" style="text-align: center">This is our family! </p>
+	@foreach (var item in UserData.FamilyMembers)
+	{
+		<div class="card col-md-3 bg-info" style="max-height: 350px; margin-top: auto; margin-bottom: auto; text-align: center;">
+			<div class="card-body align-content-center" style="text-align: center; height: 100%">
+				<img class="image-container img-fluid col-md-12" src="@Url.Action("RenderPhoto", "MediaHelper", new {imageType = Constants.RenderProfileImage, id = item.Id})" alt="fam" />
+				@item.FirstName @item.LastName 
+			</div><br />
+		</div><br/>
+	}
+</div>

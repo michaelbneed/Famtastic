@@ -1,0 +1,176 @@
+﻿@using Biz
+@using DataAccess.Dto
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@{
+	ViewData["Title"] = "Home Page";
+}
+<script>
+	if ("serviceWorker" in navigator) {
+		if (navigator.serviceWorker.controller) {
+			console.log("Famtastic active service worker found, no need to register");
+		} else {
+			// Register the service worker
+			navigator.serviceWorker
+				.register("pwabuilder-sw.js", {
+					scope: "./"
+				})
+				.then(function (reg) {
+					console.log("Famtastic Service worker has been registered for scope: " + reg.scope);
+				});
+		}
+	}
+</script>
+@if (UserData.UserProfileComplete == false && User.Identity.IsAuthenticated)
+{
+	<div id="userNotification" class="alert alert-info alert-dismissible fade show" role="alert" style="min-height: 50px">
+		<button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">X</span>
+		</button>
+		<a href="#" id="notifyPersonal" style="color: teal">@Html.Raw(Constants.NotifyUserProfileIncomplete)<span><br /></span></a>
+	</div>
+}
+@if (UserData.FamilyProfileComplete == false && User.Identity.IsAuthenticated)
+{
+	<div id="userNotification" class="alert alert-info alert-dismissible fade show" role="alert" style="min-height: 50px">
+		<button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">X</span>
+		</button>
+		<a href="#" id="notifyFam" style="color: teal">@Html.Raw(Constants.NotifyFamilyProfileIncomplete)<span><br /><br /></span></a>
+	</div>
+}
+@*Row1*@
+<div class="card-columns">
+	<div class="card bg-info text-white text-center" style="height: 350px; max-height: 350px;">
+		@if (UserData.FamilyId != 0)
+		{
+			<div class="card-header btn-lg">
+				<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Details" asp-route-id="@UserData.FamilyId">Family</a>
+			</div>
+		}
+		else
+		{
+			<div class="card-header btn-lg">
+				<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Create">Family</a>
+			</div>
+		}
+		<div style="max-height: 275px">
+			@if (UserData.FamilyId != 0)
+			{
+				<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Details" asp-route-id="@UserData.FamilyId">
+					<img class="rounded-circle img-fluid image-container" src="@Url.Action("RenderPhoto", "MediaHelper", new {imageType = Constants.RenderFamilyImage , id = UserData.FamilyId})" alt="fam" />
+				</a>
+			}
+			else
+			{
+				<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Create">
+					<img class="img-fluid rounded-circle w-50 p-2" src="~/img/avatar.png" alt="fam placeholder" />
+				</a>
+			}
+		</div>
+	</div>
+	<div class="card bg-warning text-white text-center" style="height: 350px">
+		<div class="card-header btn-lg">
+			<a class="nav-link text-white" asp-area="" asp-controller="Notes" asp-action="Index">Notes</a>
+		</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Notes" asp-action="Index">
+				<img class="img-fluid rounded w-50 p-2" src="~/img/notes.gif" alt="notes" />
+			</a>
+		</div>
+	</div>
+	<div class="card bg-secondary text-white text-center" style="height: 350px">
+		<div class="card-header btn-lg">
+			<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Index">Food</a>
+		</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Index">
+				<img class="img-fluid rounded w-50 p-2" src="~/img/Food.gif" alt="food" />
+			</a>
+		</div>
+	</div>
+</div>
+@*Row2*@
+<div class="card-columns">
+	<div class="card bg-primary text-white text-center" style="height: 350px">
+		<div class="card-header btn-lg">
+			<a class="nav-link text-white" asp-area="" asp-controller="Images" asp-action="Index">Images</a>
+		</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Images" asp-action="Index">
+				<img class="img-fluid rounded w-50 p-2" src="~/img/cam.png" alt="food" />
+			</a>
+		</div>
+	</div>
+	<div class="card bg-success text-white text-center" style="height: 350px">
+		<div class="card-header btn-lg">
+			<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Index">Videos</a>
+		</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Images" asp-action="Index">
+				<img class="img-fluid rounded w-50 p-2" src="~/img/video.png" alt="food" />
+			</a>
+		</div>
+	</div>
+	<div class="card bg-danger text-white text-center" style="height: 350px">
+		@if (UserData.UserProfileComplete == true && User.Identity.IsAuthenticated)
+		{
+			<div class="card-header btn-lg">
+				<a class="nav-link text-white" asp-area="" asp-controller="UserProfiles" asp-action="Details" asp-route-id="@UserData.UserProfileId">Profile</a>
+			</div>
+		}
+		else
+		{
+			<div class="card-header btn-lg">
+				<a class="nav-link text-white" asp-area="" asp-controller="UserProfiles" asp-action="Edit" asp-route-id="@UserData.UserProfileId">Profile</a>
+			</div>
+		}
+			<div>
+				@if (UserData.UserProfileComplete == true && User.Identity.IsAuthenticated)
+				{
+					<a class="nav-link text-white" asp-area="" asp-controller="UserProfiles" asp-action="Details" asp-route-id="@UserData.UserProfileId">
+						<img class="rounded-circle img-fluid image-container" src="@Url.Action("RenderPhoto", "MediaHelper", new {imageType = Constants.RenderProfileImage , id = UserData.UserProfileId})" alt="fam" />
+					</a>
+				}
+				else
+				{
+					<a class="nav-link text-white" asp-area="" asp-controller="UserProfiles" asp-action="Edit" asp-route-id="@UserData.UserProfileId">
+						<img class="img-fluid rounded-circle w-50 p-2" src="~/img/avatar.png" alt="fam placeholder" />
+					</a>
+				}
+			</div>
+	</div>
+</div>
+@*Row3*@
+<div class="card-columns">
+	<div class="card text-white text-center" style="height: 350px; background-color:purple">
+		<div class="card-header btn-lg">
+			<a class="nav-link text-white" asp-area="" asp-controller="Images" asp-action="Index">Planning</a>
+		</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Images" asp-action="Index">
+				<img class="img-fluid rounded w-50 p-2" src="~/img/planning.png" alt="planning" />
+			</a>
+		</div>
+	</div>
+	<div class="card text-white text-center" style="height: 350px; background-color:lightcoral">
+		<div class="card-header btn-lg">
+			<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Index">Places</a>
+		</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Images" asp-action="Index">
+				<img class="img-fluid rounded w-50 p-2" src="~/img/places.gif" alt="places" />
+			</a>
+		</div>
+	</div>
+	<div class="card text-white text-center" style="height: 350px; background-color:cadetblue">
+		<div class="card-header btn-lg">
+				<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Create">Congregate</a>
+			</div>
+		<div>
+			<a class="nav-link text-white" asp-area="" asp-controller="Families" asp-action="Create">
+				<img class="img-fluid rounded-circle w-50 p-2" src="~/img/congregate.png" alt="fam placeholder" />
+			</a>
+		</div>
+	</div>
+</div>
+

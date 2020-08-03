@@ -1,0 +1,56 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[__EFMigrationsHistory] (Table)
+       [dbo].[AspNetRoleClaims] (Table)
+       [dbo].[AspNetRoleClaims].[IX_AspNetRoleClaims_RoleId] (Index)
+       [dbo].[AspNetRoles] (Table)
+       [dbo].[AspNetRoles].[RoleNameIndex] (Index)
+       [dbo].[AspNetUserClaims] (Table)
+       [dbo].[AspNetUserClaims].[IX_AspNetUserClaims_UserId] (Index)
+       [dbo].[AspNetUserLogins] (Table)
+       [dbo].[AspNetUserLogins].[IX_AspNetUserLogins_UserId] (Index)
+       [dbo].[AspNetUserRoles] (Table)
+       [dbo].[AspNetUserRoles].[IX_AspNetUserRoles_RoleId] (Index)
+       [dbo].[AspNetUsers] (Table)
+       [dbo].[AspNetUsers].[UserNameIndex] (Index)
+       [dbo].[AspNetUsers].[EmailIndex] (Index)
+       [dbo].[AspNetUserTokens] (Table)
+       [dbo].[Attachment] (Table)
+       [dbo].[Chat] (Table)
+       [dbo].[ChatMessage] (Table)
+       [dbo].[ConversationFamily] (Table)
+       [dbo].[ConversationFamilyMessage] (Table)
+       [dbo].[Family] (Table)
+       [dbo].[FamilyCollection] (Table)
+       [dbo].[FamilyCollectionDetail] (Table)
+       [dbo].[FamilyPhotoGallery] (Table)
+       [dbo].[Media] (Table)
+       [dbo].[Note] (Table)
+       [dbo].[NoteListItem] (Table)
+       [dbo].[Recipe] (Table)
+       [dbo].[UserProfile] (Table)
+       [dbo].[FK_AspNetRoleClaims_AspNetRoles_RoleId] (Foreign Key)
+       [dbo].[FK_AspNetUserClaims_AspNetUsers_UserId] (Foreign Key)
+       [dbo].[FK_AspNetUserLogins_AspNetUsers_UserId] (Foreign Key)
+       [dbo].[FK_AspNetUserRoles_AspNetRoles_RoleId] (Foreign Key)
+       [dbo].[FK_AspNetUserRoles_AspNetUsers_UserId] (Foreign Key)
+       [dbo].[FK_AspNetUserTokens_AspNetUsers_UserId] (Foreign Key)
+       [dbo].[FK_ConversationFamily_Family] (Foreign Key)
+       [dbo].[FK_ConversationFamilyMessage_ConversationFamily] (Foreign Key)
+       [dbo].[FK_Media_UserProfile] (Foreign Key)
+       [dbo].[FK_Note_UserProfile] (Foreign Key)
+       [dbo].[FK_NoteListItem_Note] (Foreign Key)
+       [dbo].[FK_Recipe_UserProfile] (Foreign Key)
+       [dbo].[FK_UserProfile_Family] (Foreign Key)
+
+** Supporting actions

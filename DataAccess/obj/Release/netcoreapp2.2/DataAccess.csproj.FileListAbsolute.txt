@@ -1,0 +1,16 @@
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\DataAccess.deps.json
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\DataAccess.runtimeconfig.json
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\DataAccess.runtimeconfig.dev.json
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\DataAccess.dll
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\DataAccess.pdb
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\bin\Release\netcoreapp2.2\Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.AssemblyInfoInputs.cache
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.AssemblyInfo.cs
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.csproj.CopyComplete
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.dll
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.pdb
+C:\Users\user\Source\repos\FamtasticNew\DataAccess\obj\Release\netcoreapp2.2\DataAccess.csprojAssemblyReference.cache

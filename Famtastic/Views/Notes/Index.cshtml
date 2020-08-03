@@ -1,0 +1,89 @@
+﻿@model IEnumerable<DataAccess.Entity.Note>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+@*SEARCH*@
+<table style="width: 100%;">
+	<tr style="width: 100%">
+		<td style="width: 50%; vertical-align: top">
+			<a asp-action="Create"><img src="img/addBtn.png"></a>
+		</td>
+		<td style="width: 50%; text-align: right; vertical-align: top">
+			<form asp-action="Index" method="get">
+				<label class="control-label">Show Family Notes</label>
+				<input id="chkShowFamilyNotes" type="checkbox" name="showFamilyNotes" value="true" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<a asp-action="Index" style="font-size: 12px; text-align: left" data-toggle="tooltip" data-placement="top" title="Click to reset search results!">Reset</a><br />
+				<input type="text" style="text-align: center" placeholder="Search Notes..." name="search" value="@ViewData["FilterParam"]" />
+				<input type="submit" value="Search" class="btn btn-warning small" /><br />
+			</form>
+		</td>
+	</tr>
+</table>
+<br/>
+@*CARDS*@
+@foreach (var item in Model)
+{<div class="card border-dark mb-3">
+		<div class="card-header bg-warning">
+			<div class="row col-sm-12">
+				<a asp-action="Details" title="Details" asp-route-id="@item.Id" class="col-sm-6" style="text-align: left; font-size: 20px; height: 20px;">@item.Title</a>
+				<div class="col-sm-6" align="right">
+					@*<a asp-action="Details" title="Details" asp-route-id="@item.Id" style="font-size: 20px; height: 20px;"><i class="material-icons">link</i></a>*@
+					@*<a asp-action="Edit" title="Edit" asp-route-id="@item.Id" style="font-size: 20px; height: 20px;"><i class="material-icons">update</i></a>*@
+					<a asp-action="Delete" title="Delete" asp-route-id="@item.Id" style="font-size: 20px; height: 20px;"><i class="material-icons">remove_circle_outline</i></a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-sm-6" style="padding-bottom: 10px">
+					@if (@item.Text.Length > 100)
+					{
+						<p class="card-text">
+							@Html.Raw(@item.Text.Substring(0, 99))
+						<a asp-action="Edit" title="Details" asp-route-id="@item.Id"> ..........more</a>
+					</p>
+				}
+				else
+				{
+					<p class="card-text">@Html.Raw(@item.Text)</p>
+				}
+
+				</div>
+				<div class="col-sm-6">
+					@if (item.DueDate != null)
+					{
+						<p class="card-text">
+							Due Date: @item.DueDate.Value.ToShortDateString()
+						</p>
+					}
+					else
+					{
+						<p class="card-text">
+							Due Date: Not Set
+						</p>
+					}
+
+					@if (item.ShareToFam)
+					{
+						<p class="card-text alert-success">Shared to Family</p>
+					}
+					else
+					{
+						<p class="card-text alert-warning">Not shared to Family</p>
+					}
+
+					@if (item.Advanced)
+					{
+						<p class="card-text alert-danger">Has a task list</p>
+					}
+
+					<p class="card-text">Created On: @Html.DisplayFor(modelItem => item.CreatedOn)</p>
+					<input hidden="hidden" asp-for="@item.UserProfile.UserId)" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+}
