@@ -63,8 +63,8 @@ namespace Famtastic.Controllers
 		[HttpPost, ActionName("GetFamilyMemberProfile")]
 		public async Task<UserProfile> GetFamilyMemberProfile(int userProfileId)
 		{
-			var user = await _dbRead.GetSingleRecordAsync<UserProfile>(m => !m.Id.Equals(null) && m.Id.Equals(userProfileId));
-			TempData["UserFullName"] = user.FirstName + user.LastName;
+			var user = await UserHelper.GetUserProfileAsync(userProfileId);
+			TempData["UserFullName"] = user.FirstName + " " + user.LastName;
 			TempData["UserBlurb"] = user.Blurb;
 			TempData["Email"] = user.Email;
 			TempData["UserId"] = user.Id;

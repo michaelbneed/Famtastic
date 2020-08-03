@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Contexts;
 using DataAccess.Crud;
 using DataAccess.Entity;
+using Famtastic.Util;
 
 namespace Famtastic.Controllers
 {
@@ -17,6 +18,8 @@ namespace Famtastic.Controllers
         private readonly IDbReadService _dbRead;
         private readonly IDbWriteService _dbWrite;
 
+        private static int noteId = 0;
+                
 		public NoteListItemsController(FamDbContext context, IDbReadService dbRead, IDbWriteService dbWrite)
         {
             _context = context;
@@ -24,10 +27,19 @@ namespace Famtastic.Controllers
             _dbWrite = dbWrite;
         }
 
-        public async Task<IActionResult> Index(int? noteId)
+        public async Task<IActionResult> Index(int? Id)
         {
+            if (Id != null)
+            {
+                noteId = (int)Id;
+            }
+            
 			_dbRead.IncludeEntityNavigation<Note>();
-			var noteList = await _dbRead.GetAllRecordsAsync<NoteListItem>(n => n.NoteId.Equals(noteId));
+			var noteList = await _dbRead.GetAllRecordsAsync<NoteListItem>(n => n.NoteId.Equals(Id));
+            var originalNote = await _dbRead.GetSingleRecordAsync<Note>(n => n.Id.Equals(Id));
+            ViewData["NoteTitle"] = originalNote.Title;
+            ViewData["NoteText"] = originalNote.Text;
+            ViewData["NoteId"] = originalNote.Id;
             return View(noteList);
         }
 
@@ -48,15 +60,9 @@ namespace Famtastic.Controllers
             return View(noteListItem);
         }
 
-        //public IActionResult Create()
-        //{
-        //    ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Id");
-        //    return View();
-        //}
-
-        public IActionResult Create(int? noteId)
+        public IActionResult Create()
         {
-            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Id");
+            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Id", noteId);
             return View();
         }
 
@@ -66,11 +72,15 @@ namespace Famtastic.Controllers
         {
             if (ModelState.IsValid)
             {
+                noteListItem.CreatedBy = User.Identity.Name;
+                noteListItem.CreatedOn = DateTime.Now;
                 _dbWrite.Add(noteListItem);
                 await _dbWrite.SaveChangesAsync();
-                return RedirectToAction("Index", "NoteListItems", new { noteid = noteListItem.NoteId });
+                noteId = 0;
+                return RedirectToAction("Index", "NoteListItems", new { Id = noteListItem.NoteId });
             }
             ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Id", noteListItem.NoteId);
+            
             return View(noteListItem);
         }
 
@@ -103,6 +113,9 @@ namespace Famtastic.Controllers
             {
                 try
                 {
+                    noteListItem.CreatedBy = User.Identity.Name;
+                    noteListItem.CreatedOn = DateTime.Now;
+
                     _dbWrite.Update(noteListItem);
                     await _dbWrite.SaveChangesAsync();
                 }
@@ -117,7 +130,8 @@ namespace Famtastic.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                noteId = 0;
+                return RedirectToAction("Index", "NoteListItems", new { Id = noteListItem.NoteId });
             }
             ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Id", noteListItem.NoteId);
             return View(noteListItem);
@@ -147,10 +161,10 @@ namespace Famtastic.Controllers
 			var noteListItem = await _dbRead.GetSingleRecordAsync<NoteListItem>(n => n.Id.Equals(id));
 			_dbWrite.Delete(noteListItem);
             await _dbWrite.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            
+            return RedirectToAction("Index", "NoteListItems", new { Id = noteListItem.NoteId });
         }
 
-		//TODO 
         private bool NoteListItemExists(int id)
         {
             return _context.NoteListItem.Any(e => e.Id == id);

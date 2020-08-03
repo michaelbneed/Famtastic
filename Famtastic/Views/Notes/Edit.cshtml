@@ -38,7 +38,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="submit" value="Save" class="btn btn-success col-md-12" />
+                        <input id="btnEdit" type="submit" value="Create" class="btn btn-success col-md-12" />
+                        <input id="btnEditWithList" type="submit" value="Edit with List" class="btn btn-success col-md-12" style="display: none" />
                     </div><br /><br />
                     <div class="col-md-6">
                         <a class="btn btn-warning col-md-12" asp-action="Index" asp-controller="Notes">Back</a>
@@ -57,7 +58,8 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label asp-for="Advanced" class="control-label">Link to list</label>
-                    <input type="checkbox" asp-for="Advanced" id="chkShowNoteList" onclick="CheckChangedEvent('ShowHideNoteList', 'chkShowNoteList')" />
+                    <input type="checkbox" asp-for="Advanced" id="chkShowNoteList" onclick="swapElements('btnEdit', 'btnEditWithList', 'chkShowNoteList')" />
+                    <a class="btn btn-sm btn-info" asp-action="Index" asp-controller="NoteListItems" asp-route-id="@Model.Id">List</a>
                     <span asp-validation-for="Advanced" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-4">
