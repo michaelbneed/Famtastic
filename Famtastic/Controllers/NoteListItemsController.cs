@@ -37,8 +37,8 @@ namespace Famtastic.Controllers
 			_dbRead.IncludeEntityNavigation<Note>();
 			var noteList = await _dbRead.GetAllRecordsAsync<NoteListItem>(n => n.NoteId.Equals(Id));
             var originalNote = await _dbRead.GetSingleRecordAsync<Note>(n => n.Id.Equals(Id));
-            ViewData["NoteTitle"] = originalNote.Title;
-            ViewData["NoteText"] = originalNote.Text;
+            ViewData["NoteTitle"] = !string.IsNullOrEmpty(originalNote.Title);
+            ViewData["NoteText"] = !string.IsNullOrEmpty(originalNote.Text);
             ViewData["NoteId"] = originalNote.Id;
             return View(noteList);
         }

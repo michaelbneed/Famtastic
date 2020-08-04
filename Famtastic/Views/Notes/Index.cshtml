@@ -30,14 +30,14 @@
             <div class="row col-sm-12">
                 @if (item.Advanced)
                 {
-                    <div class="col-sm-6" align="right">
+                    <div class="col-sm-6" align="left">
                         <a asp-action="Index" asp-controller="NoteListItems" title="Open this list" asp-route-id="@item.Id" class="col-sm-6" style="text-align: left; font-size: 20px; height: 20px;">List: @item.Title</a>
                         <a asp-action="Edit" title="Open this note" asp-route-id="@item.Id" class="col-sm-6" style="text-align: left; font-size: 20px; height: 20px;">Note: @item.Title</a>
                     </div>
                 }
                 else
                 {
-                    <div class="col-sm-6" align="right">
+                    <div class="col-sm-6" align="left">
                         <a asp-action="Edit" title="Open this note" asp-route-id="@item.Id" class="col-sm-6" style="text-align: left; font-size: 20px; height: 20px;">Note: @item.Title</a>
                     </div>
                 }

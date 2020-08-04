@@ -26,4 +26,3 @@ C:\repos_non_source_control\FamtasticNew\Database\obj\Debug\postdeploy.sql
 C:\repos_non_source_control\FamtasticNew\Database\obj\Debug\predeploy.sql
 C:\repos_non_source_control\FamtasticNew\Database\obj\Debug\Database.dll
 C:\repos_non_source_control\FamtasticNew\Database\obj\Debug\Database.pdb
-C:\repos_non_source_control\FamtasticNew\Database\obj\Debug\Database.sqlprojAssemblyReference.cache
